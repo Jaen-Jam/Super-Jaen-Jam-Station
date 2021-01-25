@@ -1,7 +1,6 @@
 
 class Point2D {
 
-
     /**
      * 
      * @param {number} x 
@@ -10,6 +9,13 @@ class Point2D {
     constructor (x, y) {
         this.x = x;
         this.y = y;
+    }
+
+    /**
+     * 
+     */
+    static defaultConstructor () {
+        return new Point2D(0, 0);
     }
 
     /**
@@ -37,6 +43,10 @@ class Point2D {
         return new Point2D( this.x - p1.x, this.y - p1.y);
     }
 
+    /**
+     * 
+     * @param {Point2D} p1 
+     */
     equal ( p1 ) {
         return Math.abs(this.x - p1.x) < BasicGeo.ZERO && Math.abs(this.y - p1.y) < BasicGeo.ZERO;
     }

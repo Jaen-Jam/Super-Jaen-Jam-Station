@@ -8,9 +8,7 @@ class Entity {
      * @param {number} speed 
      * @param {string} color
      */
-    constructor ( canvas, position, dimension, speed, color) {
-        this.canvas = canvas;
-        this.context = this.canvas.getContext("2d");
+    constructor (  position, dimension, speed, color) {
         this.position = position;
         this.dimension = dimension;
         this.speed = speed;
@@ -23,14 +21,14 @@ class Entity {
      * @param {Entity} e1 
      */
     static copyConstructor ( e1 ) {
-        return new Entity( e1.canvas, e1.position, e1.dimension, e1.speed);
+        return new Entity( e1.position, e1.dimension, e1.speed, e1.color );
     }
     
     /**
      * 
      */
     update () {
-        this.position.add(this.velocity);
+        this.position = this.position.add(this.velocity);
     }
 
     /**
@@ -38,13 +36,13 @@ class Entity {
      * @param {} context 
      */
     draw () {
-        this.context.fillStyle = this.color;
-        this.context.fillRect(this.position.x, this.position.y, this.dimension.x, this.dimension.y);
+        game.context.fillStyle = this.color;
+        game.context.fillRect(this.position.x, this.position.y, this.dimension.x, this.dimension.y);
     }
 
     /**
      * 
-     * @param {*} e1 
+     * @param {Entity} e1 
      */
     intersect( e1 ) {
         return this.position.x + this.dimension.x > e1.position.x &&

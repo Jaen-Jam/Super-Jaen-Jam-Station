@@ -1,30 +1,47 @@
+/**
+ * 
+ */
 class Player extends Paddle {
 
-    constructor( canvas, dimension, speed, color ) {
+    /**
+     * 
+     * @param {Point2D} dimension 
+     * @param {Number} speed 
+     * @param {String} color 
+     */
+    constructor(  dimension, speed, color ) {
         let positionAux = new Point2D( 20, canvas.height/2 - dimension.y/2);
-        super(canvas, positionAux, dimension, speed, color);
+        super( positionAux, dimension, speed, color);
     }
 
-    static defaultConstructor( canvas ) {
+    /**
+     * 
+     */
+    static defaultConstructor( ) {
         let dimensionAux = new Point2D(10, 100);
         let speedAux = 15;
         let colorAux = "#3b1f5f";
-        return new Player ( canvas, dimensionAux, speedAux, colorAux );
+        return new Player ( dimensionAux, speedAux, colorAux );
     }
 
+    /**
+     * 
+     */
     update () {
+        if ( game.keyPressed['UP'] ) {
+            this.moveUp();
+        } else if ( game.keyPressed['DOWN'] ) {
+            this.moveDown();
+        } else {
+            this.moveStop();
+        }
         super.update();
     }
 
+    /**
+     * 
+     */
     draw () {
         super.draw();
-    }
-
-    moveUp () {
-        this.velocity.y = -this.speed;
-    }
-
-    moveDown() {
-        this.velocity.y = this.speed;
     }
 }

@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html style="display: flex; flex-direction: column; height: 100%; width: 100%;">
     <head>
 
     </head>
-    <body>
-        <canvas id="canvas" tabindex="1" width="500" height="500" style="background-color: black;"></canvas>
+    <body style="display: flex; flex-direction: column; height: 100%; width: 100%;">
+        <div style="display: flex; flex-direction: column; margin: auto;">
+            <canvas id="canvas-pong" tabindex="1" width="1080px" height="720px" style="display:flex; width: 75%;background-color: black;"></canvas>
+        </div>
         <script src="BasicGeo.js"></script>
         <script src="Point2D.js"></script>
         <script src="Entity.js"></script>
@@ -12,20 +14,10 @@
         <script src="Paddle.js"></script>
         <script src="Player.js"></script>
         <script src="Bot.js"></script>
+        <script src="Background.js"></script>
+        <script src="Game.js"></script>
+        <script src="Pong.js"></script>
         <script type="text/javascript">
-            let canvas = document.getElementById("canvas");
-            let entities = [
-                Ball.defaultConstructor(canvas),
-                Player.defaultConstructor(canvas),
-                Bot.defaultConstructor(canvas)
-            ];
-            entities.forEach(entity => {
-                console.log(entity);
-                entity.draw();
-            });
-            canvas.addEventListener("click", function () {
-                ball.apetecan();
-            });
         </script>
     </body>
 </html>
