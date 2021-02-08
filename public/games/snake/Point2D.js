@@ -1,5 +1,7 @@
-
-class Point2D {
+/**
+ * 
+ */
+export default class Point2D {
 
     /**
      * 
@@ -51,5 +53,3 @@ class Point2D {
         return Math.abs(this.x - p1.x) < BasicGeo.ZERO && Math.abs(this.y - p1.y) < BasicGeo.ZERO;
     }
 }
-
-module.exports = Point2D;

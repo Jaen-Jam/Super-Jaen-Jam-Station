@@ -1,0 +1,12 @@
+doctype html
+html(lang='es')
+    head    
+        meta(charset='UTF-8')
+        meta(name='viewport' content='width=device-width, initial-scale=1.0')
+        title Jaen Jam Games
+        link(rel='icon', type='image/png' sizes='32x32' href='/favicon-32x32.png')
+        link(rel='stylesheet', href='/css/styles.css')
+    body
+        canvas(class='canvas-game' tabindex="1" id='canvas-snake' width='1920' height='1080')
+        script(type='module')
+            include ../games/snake/app.js
