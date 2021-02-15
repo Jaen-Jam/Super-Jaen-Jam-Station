@@ -17,7 +17,7 @@ export default class Tableboard extends Entity {
      * 
      */
     update () {
-        super.update();
+        //super.update();
     }
 
     /**
@@ -28,5 +28,10 @@ export default class Tableboard extends Entity {
         gl.fillStyle = this.color;
         gl.font = "60px monospace";
         gl.fillText(Game.instance.entities['snake'].score, Game.instance.dimension.x /2, 50);
+        if ( Game.instance.gameover ) {
+            gl.font = "200px monospace";
+            gl.textAlign = "center";
+            gl.fillText('GAME OVER', Game.instance.dimension.x /2, Game.instance.dimension.y /2);
+        } 
     }
 }

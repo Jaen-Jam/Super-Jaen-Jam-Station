@@ -20,13 +20,13 @@ export default class Game {
         if ( typeof Game.instance === "object" ) {
             return Game.instance;
         }
-
+        this.gameover = false;
         this.canvas = canvas;
         this.context = canvas.getContext("2d");
         this.dimension = new Point2D(canvas.width, canvas.height);
-        this.sizeCell = 20;
+        this.sizeCell = 40;
         this.numCell = new Point2D(this.dimension.x/this.sizeCell, this.dimension.y/this.sizeCell)
-        this.keyPressed = {};
+        this.keyPressed = 'SPACE';
         this.entities = {};
         this.lastUpdateTime = new Date().getTime();
         this.fps = 60;
@@ -39,24 +39,41 @@ export default class Game {
     init () {
         this.entities['tableboard'] = new Tableboard();
         this.entities['snake'] = Snake.defaultConstructor();
-        let applePosition = new Point2D (
-            Math.floor(Math.random() * (this.numCell.x - 1)),
-            Math.floor(Math.random() * (this.numCell.y - 1))
-        )
-        this.entities['apple'] = new Apple(applePosition)
+        this.newApple(); 
     }
 
     initKeyEvent () {
         this.canvas.addEventListener('keydown', (event) => {
             const keyName = Game.KEYS[event.which];
-            this.keyPressed[keyName] = true;
+            switch (keyName) {
+                case 'UP':
+                    if ( this.keyPressed == 'LEFT' || this.keyPressed == 'RIGHT' || this.keyPressed == 'SPACE') {
+                        this.keyPressed = keyName;
+                    }
+                break;
+                case 'DOWN':
+                    if ( this.keyPressed == 'LEFT' || this.keyPressed == 'RIGHT' || this.keyPressed == 'SPACE') {
+                        this.keyPressed = keyName;
+                    }
+                break;
+                case 'RIGHT':
+                    if ( this.keyPressed == 'UP' || this.keyPressed == 'DOWN' || this.keyPressed == 'SPACE') {
+                        this.keyPressed = keyName;
+                    }
+                break;
+                case 'LEFT':
+                    if ( this.keyPressed == 'UP' || this.keyPressed == 'DOWN' || this.keyPressed == 'SPACE') {
+                        this.keyPressed = keyName;
+                    }
+                break;
+            
+                default:
+                    this.keyPressed = 'SPACE';
+                    break;
+            }
             event.preventDefault();
         });
-        this.canvas.addEventListener('keyup', (event) => {
-            const keyName = Game.KEYS[event.which];
-            this.keyPressed[keyName] = false;
-            event.preventDefault();
-        });
+        
     }
 
     start () {
@@ -73,6 +90,7 @@ export default class Game {
     }
 
     draw () {
+        this.context.clearRect(0, 0, this.dimension.x, this.dimension.y);
         for ( const entityKey in this.entities ) 
             this.entities[entityKey].draw();
     }
@@ -107,5 +125,13 @@ export default class Game {
         this.update( percentageOfInterval );
         this.draw();
         this.lastUpdateTime = new Date().getTime();
+    }
+
+    newApple () {
+        let applePosition = new Point2D (
+            Math.floor(Math.random() * (this.numCell.x - 1)),
+            Math.floor(Math.random() * (this.numCell.y - 1))
+        )
+        this.entities['apple'] = new Apple(applePosition);
     }
 }

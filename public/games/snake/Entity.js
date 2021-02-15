@@ -6,6 +6,7 @@ import Game from './Game.js';
  */
 export default class Entity {
 
+    velocity;
     /**
      * 
      * @param {Point2D} position 
@@ -29,7 +30,7 @@ export default class Entity {
      * 
      */
     update () {
-        this.position = this.position.add(this.velocity);
+        
     }
 
     /**
