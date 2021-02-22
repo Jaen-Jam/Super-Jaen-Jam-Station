@@ -77,9 +77,7 @@ export default class Snake extends Entity {
     draw () {
         for ( const entityKey in this.body ) {
             this.body[entityKey].draw();
-        }
-            
-            
+        }     
     }
 
     checkApple () {

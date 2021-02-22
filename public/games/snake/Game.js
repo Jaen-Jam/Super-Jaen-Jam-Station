@@ -11,8 +11,6 @@ export default class Game {
         38: 'UP',
         39: 'RIGHT',
         40: 'DOWN',
-        87: 'UP',
-        83: 'DOWN',
     }
 
     constructor ( canvas ) {
